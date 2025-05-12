@@ -1,0 +1,20 @@
+services:
+  server:
+    build:
+      context: ./server
+    networks:
+      - monitoring_net
+    deploy:
+      replicas: 1
+
+  client:
+    build:
+      context: ./client
+    networks:
+      - monitoring_net
+    deploy:
+      replicas: 5
+
+networks:
+  monitoring_net:
+    driver: bridge
