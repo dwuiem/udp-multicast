@@ -4,17 +4,60 @@ services:
       context: ./server
     networks:
       - monitoring_net
-    deploy:
-      replicas: 1
+    environment:
+      - CLIENTS=client1,client2,client3,client4,client5
+    cap_add:
+      - NET_ADMIN
 
-  client:
+  client1:
     build:
       context: ./client
     networks:
       - monitoring_net
-    deploy:
-      replicas: 5
+    environment:
+      - SERVER=server
+    cap_add:
+      - NET_ADMIN
+
+  client2:
+    build:
+      context: ./client
+    networks:
+      - monitoring_net
+    environment:
+      - SERVER=server
+    cap_add:
+      - NET_ADMIN
+
+  client3:
+    build:
+      context: ./client
+    networks:
+      - monitoring_net
+    environment:
+      - SERVER=server
+    cap_add:
+      - NET_ADMIN
+
+  client4:
+    build:
+      context: ./client
+    networks:
+      - monitoring_net
+    environment:
+      - SERVER=server
+    cap_add:
+      - NET_ADMIN
+
+  client5:
+    build:
+      context: ./client
+    networks:
+      - monitoring_net
+    environment:
+      - SERVER=server
+    cap_add:
+      - NET_ADMIN
 
 networks:
   monitoring_net:
-    driver: bridge
